@@ -11,19 +11,19 @@ public class AvaliacaoAluno {
     public AvaliacaoAluno() {}
 
     /** O aluno pede revisão da nota; o trabalho volta a ser avaliado. */
-    @StateRefinement(from="true", to="true")
+     @StateRefinement(from="avaliado()", to="entregue()")
     public void pedirRevisao() {}
 
     /** O aluno desiste da avaliação (definitivo). */
-    @StateRefinement(from="true", to="true")
+    @StateRefinement(from="inscrito() || entregue()", to="desistente()")
     public void desistir() {}
 
     /** Publica a nota (definitivo). */
-    @StateRefinement(from="true", to="true")
+    @StateRefinement(from="avaliado()", to="publicado()")
     public void publicar() {}
 
     /** O docente atribui a nota ao trabalho entregue. */
-    @StateRefinement(from="true", to="true")
+    @StateRefinement(from="entregue()", to="avaliado()")
     public void avaliar() {}
 
     /** O aluno entrega o trabalho. */
